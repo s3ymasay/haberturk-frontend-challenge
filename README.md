@@ -7,13 +7,16 @@ Uygulama boyunca tasarıma pixel-perfect düzeyde sadık kalınması ve yapını
 
 ---
 
-## Kullanılan Teknolojiler
+## Kullanılan Teknolojiler ve Teknikler
 
 - Next.js 13+ (App Router)
 - React
 - Tailwind CSS
 - Next.js API Routes
-- fetch API
+- fetch API 
+- `useWindowSize` custom hook'u ile responsive kontrol
+- SSR uyumu ve ekran bazlı conditional render mantığı
+
 
 ---
 
