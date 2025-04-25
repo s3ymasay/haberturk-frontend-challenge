@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+@layer base {
+  body {
+    @apply font-sans bg-cream text-dark;
+  }
+
+  h1, h2, h3 {
+    @apply font-abril;
+  }
+
+  .font-calibri {
+    font-family: Calibri, sans-serif;
+  }
+}
+
+/* Scrollbar'ı tamamen gizle */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
