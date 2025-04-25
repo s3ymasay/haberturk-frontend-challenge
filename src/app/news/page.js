@@ -18,15 +18,16 @@ export default function NewsPage() {
 
   const { width } = useWindowSize();
 
-  // Ekran boyutuna göre mobil/tablet kontrolü
+  // Ekran tipi belirle (mobile, tablet)
   useEffect(() => {
+    if (width === 0) return;
     setIsMobile(width < 768);
     setIsTablet(width >= 768 && width < 1024);
   }, [width]);
 
-  // API'den verileri al
+  // Veri çek
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchAllData = async () => {
       try {
         const [newsRes, adsRes] = await Promise.all([
           fetch("/api/news"),
@@ -35,20 +36,64 @@ export default function NewsPage() {
 
         if (!newsRes.ok || !adsRes.ok) throw new Error();
 
-        const news = await newsRes.json();
-        const ads = await adsRes.json();
+        const [newsJson, adsJson] = await Promise.all([
+          newsRes.json(),
+          adsRes.json(),
+        ]);
 
-        setNewsData(news);
-        setAdsData(ads);
-      } catch (err) {
+        setNewsData(newsJson);
+        setAdsData(adsJson);
+      } catch {
         setError(true);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
+    fetchAllData();
   }, []);
+
+  // Kartlar sadece desktop’ta render edilir
+  const shouldRenderCards = !isMobile && !isTablet;
+
+  // İçerik alanı
+  const renderContent = () => {
+    if (newsData.length === 0) {
+      return (
+        <div className="w-full h-full flex items-center justify-center text-dark text-lg font-semibold">
+          Henüz içerik bulunamadı.
+        </div>
+      );
+    }
+
+    const result = [];
+
+    newsData.forEach((item, i) => {
+      result.push(
+        <NewsCard key={item.id} data={item} index={i} isMobile={isMobile} />
+      );
+
+      if ((i === 2 || i === 5) && adsData) {
+        result.push(
+          <AdCard key={`ad-${i}`} data={adsData} isMobile={isMobile} />
+        );
+      }
+    });
+
+    return result;
+  };
+
+  // SSR için isMobile belirlenmemişse loading göster
+  if (isMobile === null) {
+    return (
+      <LayoutWrapper
+        isLoading={true}
+        error={false}
+        isMobile={false}
+        isTablet={false}
+      />
+    );
+  }
 
   return (
     <LayoutWrapper
@@ -57,25 +102,15 @@ export default function NewsPage() {
       isMobile={isMobile}
       isTablet={isTablet}
     >
-      {/* Sol panel (her zaman gösteriliyor) */}
-      <NewsHighlight isMobile={isMobile} isTablet={isTablet} />
+      <div className="relative overflow-hidden bg-cream w-full h-full">
+        <NewsHighlight isMobile={isMobile} isTablet={isTablet} />
 
-      {/* Sağ panel (sadece geniş ekranlarda) */}
-      {!isMobile && !isTablet && (
-        <div className="absolute top-0 right-0 w-[calc(100%-625px)] h-full flex bg-cream">
-          {/* Haber kartları */}
-          <div className="flex-1 flex flex-col overflow-y-scroll scrollbar-hide">
-            {newsData.map((newsItem) => (
-              <NewsCard key={newsItem.id} data={newsItem} />
-            ))}
+        {shouldRenderCards && (
+          <div className="absolute top-0 xl:left-[625px] lg:left-[481px] h-full xl:w-[calc(100%-625px)] lg:w-[calc(100%-481px)] overflow-x-auto flex scrollbar-hide">
+            {renderContent()}
           </div>
-
-          {/* Reklam alanı */}
-          <div className="w-[300px] flex-shrink-0 bg-white border-l border-[#D9D9D9]">
-            {adsData && <AdCard data={adsData} />}
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </LayoutWrapper>
   );
 }
