@@ -13,7 +13,7 @@ export default function NewsHighlight({ isMobile, isTablet }) {
   useEffect(() => {
     const fetchHighlight = async () => {
       try {
-        const res = await fetch("/api/highlight");
+        const res = await fetch("/haberturk-frontend-challenge/data/highlight.json");
         if (!res.ok) throw new Error();
         const data = await res.json();
         setHighlight(data);

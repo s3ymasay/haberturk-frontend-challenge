@@ -30,8 +30,8 @@ export default function NewsPage() {
     const fetchAllData = async () => {
       try {
         const [newsRes, adsRes] = await Promise.all([
-          fetch("/api/news"),
-          fetch("/api/ads"),
+          fetch("/haberturk-frontend-challenge/data/news.json"),
+          fetch("/haberturk-frontend-challenge/data/ads.json"),
         ]);
 
         if (!newsRes.ok || !adsRes.ok) throw new Error();

@@ -14,7 +14,7 @@ export default function LandingRightPanel() {
   useEffect(() => {
     const fetchHeadlines = async () => {
       try {
-        const res = await fetch("/api/landing");
+        const res = await fetch("/haberturk-frontend-challenge/data/landing.json");
         if (!res.ok) throw new Error();
         const data = await res.json();
         setHeadlines(data.headlines);

@@ -18,7 +18,7 @@ export default function LandingLeftPanel({ date, layout, showRightPanel }) {
   useEffect(() => {
     const fetchDescription = async () => {
       try {
-        const res = await fetch("/api/landing");
+        const res = await fetch("/haberturk-frontend-challenge/data/landing.json");
         if (!res.ok) throw new Error();
         const data = await res.json();
         setDescription(data.dateDescription);

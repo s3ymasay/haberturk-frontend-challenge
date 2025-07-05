@@ -1,4 +1,3 @@
-// src/app/news/[id]/page.js
 "use client";
 
 import { useEffect, useState } from "react";
@@ -27,19 +26,16 @@ export default function NewsDetailPage() {
     setIsSmallDesktop(width >= 1024 && width < 1280);
   }, [width]);
 
-  // API'den haber detayı ve liste verilerini çek
+  // Tüm haberleri çek, detay haberi id ile filtrele
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [detailRes, listRes] = await Promise.all([
-          fetch(`/api/news/${id}`),
-          fetch("/api/news"),
-        ]);
+        const res = await fetch("/haberturk-frontend-challenge/data/news.json");
+        if (!res.ok) throw new Error();
 
-        if (!detailRes.ok || !listRes.ok) throw new Error();
-
-        const selected = await detailRes.json();
-        const list = await listRes.json();
+        const list = await res.json();
+        const selected = list.find(item => String(item.id) === String(id));
+        if (!selected) throw new Error("Haber bulunamadı");
 
         setNewsItem(selected);
         setRelatedNews(list.slice(0, 10));
@@ -61,7 +57,6 @@ export default function NewsDetailPage() {
       isTablet={isTablet}
     >
       {isMobile ? (
-        // Mobil görünüm
         <div className="relative w-[calc(100%-60px)] left-[60px] h-full bg-cream flex flex-col">
           <div className="absolute top-0 w-full h-[161px] overflow-x-auto flex scrollbar-hide">
             {relatedNews.map((item, i) => (
@@ -73,7 +68,6 @@ export default function NewsDetailPage() {
           </div>
         </div>
       ) : isTablet ? (
-        // Tablet görünüm
         <div className="relative w-[calc(100%-60px)] left-[60px] h-full bg-cream flex flex-col">
           <div className="absolute top-0 w-full h-[220px] overflow-x-auto flex scrollbar-hide">
             {relatedNews.map((item, i) => (
@@ -91,7 +85,6 @@ export default function NewsDetailPage() {
           </div>
         </div>
       ) : (
-        // Desktop ve küçük desktop
         <div className="w-full h-screen bg-cream flex">
           <div
             className={`h-full bg-white overflow-y-scroll scrollbar-hide ${
