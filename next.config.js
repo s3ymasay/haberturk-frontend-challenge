@@ -1,13 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
+  output: 'export',
+  trailingSlash: true,
   images: {
-    unoptimized: true,
+    unoptimized: true
   },
-  basePath: "/haberturk-frontend-challenge",
-  assetPrefix: "/haberturk-frontend-challenge/",
-};
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/haberturk-frontend-challenge' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/haberturk-frontend-challenge' : ''
+}
 
-module.exports = nextConfig;
-
-console.log("✅ next.config.js yüklendi: basePath aktif");
+module.exports = nextConfig
