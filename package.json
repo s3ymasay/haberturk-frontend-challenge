@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://s3ymasay.github.io/haberturk-frontend-challenge",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "export": "next export",
-    "predeploy": "npm run build && npm run export",
-    "deploy": "gh-pages -d out",
-    "start": "next start",
-    "lint": "next lint"
-  },
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "export": "next export",
+  "predeploy": "next build",    
+  "deploy": "gh-pages -d out",
+  "start": "next start",
+  "lint": "next lint"
+},
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.4.4",
     "next": "15.3.0",

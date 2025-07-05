@@ -9,3 +9,5 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+console.log("✅ next.config.js yüklendi: basePath aktif");
