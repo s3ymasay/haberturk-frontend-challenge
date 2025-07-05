@@ -26,7 +26,7 @@ export default function NewsDetailPage() {
     setIsSmallDesktop(width >= 1024 && width < 1280);
   }, [width]);
 
-  // Tüm haberleri çek, detay haberi id ile filtrele
+  // Haber verilerini çek
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,7 +34,7 @@ export default function NewsDetailPage() {
         if (!res.ok) throw new Error();
 
         const list = await res.json();
-        const selected = list.find(item => String(item.id) === String(id));
+        const selected = list.find((item) => String(item.id) === String(id));
         if (!selected) throw new Error("Haber bulunamadı");
 
         setNewsItem(selected);
@@ -108,4 +108,16 @@ export default function NewsDetailPage() {
       )}
     </LayoutWrapper>
   );
+}
+
+// ✅ Statik export için gerekli olan dinamik id listesini sağlıyoruz
+export async function generateStaticParams() {
+  const res = await fetch(
+    "https://s3ymasay.github.io/haberturk-frontend-challenge/data/news.json"
+  );
+  const data = await res.json();
+
+  return data.map((item) => ({
+    id: item.id.toString(),
+  }));
 }
