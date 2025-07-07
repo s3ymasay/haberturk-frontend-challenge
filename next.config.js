@@ -5,8 +5,8 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/haberturk-frontend-challenge' : '',
-  basePath: process.env.NODE_ENV === 'production' ? '/haberturk-frontend-challenge' : ''
+  assetPrefix: '/haberturk-frontend-challenge',
+  basePath: '/haberturk-frontend-challenge'
 }
 
 module.exports = nextConfig
