@@ -32,7 +32,7 @@ export default function LandingPage() {
     <div className="relative w-full h-screen overflow-hidden bg-cream">
       <div className="absolute inset-0 w-full h-full">
         <Image
-          src="/assets/images/landingpage.webp"
+          src="/haberturk-frontend-challenge/assets/images/landingpage.webp" 
           alt="Background"
           fill
           className="object-cover"
