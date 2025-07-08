@@ -2,6 +2,9 @@
 
 # Haberturk – Front-End Challenge
 
+[Live Demo on GitHub Pages](https://s3ymasay.github.io/haberturk-frontend-challenge)
+
+
 This project was developed as part of a front-end evaluation assignment for Habertürk. A responsive news interface was built using Next.js App Router and TailwindCSS, staying as close to the provided design as possible with pixel-perfect attention to detail.
 
 Content is served through Next.js API Routes, and the structure was implemented with a focus on user experience, modular component architecture, and performance across mobile, tablet, and desktop devices.
@@ -96,6 +99,8 @@ Note: Configuration and metadata files (e.g., package.json, tailwind.config.js, 
 ## 🇹🇷
 
 # Haberturk – Front-End Challenge
+
+[Canlı Demo (GitHub Pages)](https://s3ymasay.github.io/haberturk-frontend-challenge)
 
 Bu proje, Habertürk için hazırlanmış bir front-end değerlendirme çalışmasıdır. Next.js App Router ve TailwindCSS kullanılarak, tasarıma birebir sadık, responsive bir haber arayüzü geliştirilmiştir.
 
