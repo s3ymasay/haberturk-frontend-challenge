@@ -153,7 +153,7 @@ export default function LandingLeftPanel({ date, layout, showRightPanel }) {
         }`}
       >
         <Image
-          src="/assets/logo/whitelogo.svg"
+          src="/haberturk-frontend-challenge/assets/logo/whitelogo.svg"
           alt="Logo"
           width={79}
           height={38}

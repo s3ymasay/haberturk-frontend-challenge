@@ -94,7 +94,7 @@ export default function Sidebar({ isOpen, toggleMenu, isMobile, isTablet }) {
             }`}
           >
             <Image
-              src="/assets/logo/whitelogo.svg"
+              src="/haberturk-frontend-challenge/assets/logo/whitelogo.svg"
               alt="Logo"
               width={isMobile ? 40 : 39.9}
               height={isMobile ? 19 : 19.05}
@@ -161,9 +161,9 @@ export default function Sidebar({ isOpen, toggleMenu, isMobile, isTablet }) {
             isMobile ? "bottom-[95px] left-[40px]" : "bottom-[112px] left-[64px]"
           } ${isOpen ? "opacity-100" : "opacity-0"}`}
         >
-          <Image src="/assets/icons/facebook.svg" alt="Facebook" width={10} height={20} />
-          <Image src="/assets/icons/twitter.svg" alt="Twitter" width={22} height={19} />
-          <Image src="/assets/icons/linkedin.svg" alt="LinkedIn" width={20} height={20} />
+          <Image src="/haberturk-frontend-challenge/assets/icons/facebook.svg" alt="Facebook" width={10} height={20} />
+          <Image src="/haberturk-frontend-challenge/assets/icons/twitter.svg" alt="Twitter" width={22} height={19} />
+          <Image src="/haberturk-frontend-challenge/assets/icons/linkedin.svg" alt="LinkedIn" width={20} height={20} />
         </div>
 
         {/* Copyright */}
